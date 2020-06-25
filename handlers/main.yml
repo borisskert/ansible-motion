@@ -1,1 +1,11 @@
 ---
+- name: Restart motion service
+  systemd:
+    name: motion
+    state: restarted
+    enabled: true
+    daemon_reload: true
+  when: not (
+    molecule_docker_environment is defined
+    and molecule_docker_environment | bool
+    )

@@ -55,14 +55,11 @@
       register: motion_config_file
       failed_when: not motion_config_file.stat.exists
 
-    - name: Should create usb cam config file
-      stat:
-        path: /srv/motion/config/conf.d/usb_cam.conf
-      register: usb_cam_config_file
-      failed_when: not usb_cam_config_file.stat.exists
-
-    - name: Should create video cam config file
-      stat:
-        path: /srv/motion/config/conf.d/video_card_cam.conf
-      register: video_card_cam_config_file
-      failed_when: not video_card_cam_config_file.stat.exists
+    - name: Should open 8081/tcp port
+      command: nc -z -w1 localhost 8081
+      changed_when: false
+      register: netcat_8081
+      retries: 300
+      delay: 1
+      until: netcat_8081 is defined
+        and netcat_8081.rc == 0

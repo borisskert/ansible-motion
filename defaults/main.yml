@@ -11,3 +11,4 @@ motion_log_volume: ''
 motion_data_volume: ''
 
 motion_cameras: []
+motion_stream_port: 8081
