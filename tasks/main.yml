@@ -25,3 +25,10 @@
       dockerfile.changed
       or motion_force_docker_rebuild | bool
       }}"
+
+- name: Template systemd service unit file
+  template:
+    src: templates/motion.service.j2
+    dest: /etc/systemd/system/motion.service
+    mode: 0644
+  register: dockerfile

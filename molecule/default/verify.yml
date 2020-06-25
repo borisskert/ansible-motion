@@ -14,3 +14,9 @@
         name: local/motion:latest
         source: local
         state: present
+
+    - name: Should template systemd unit file
+      stat:
+        path: /etc/systemd/system/motion.service
+      register: systemd_unit_file
+      failed_when: not systemd_unit_file.stat.exists

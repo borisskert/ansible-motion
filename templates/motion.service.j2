@@ -1,0 +1,25 @@
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=motion service
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStartPre=-/usr/bin/docker rm -f {{ motion_docker_container_name }}
+ExecStartPre=/usr/bin/docker build \
+  --tag {{ motion_docker_image_name }}:{{ motion_docker_image_tag }} \
+  {{ motion_docker_working_directory }}
+
+ExecStart=/usr/bin/docker run \
+  --name {{ motion_docker_container_name }} \
+  --tmpfs /tmp \
+  {{ motion_docker_image_name }}:{{ motion_docker_image_tag }}
+
+ExecStop=-/usr/bin/docker stop {{ motion_docker_container_name }}
+ExecStopPost=-/usr/bin/docker rm -f {{ motion_docker_container_name }}
+
+Restart=always
+RestartSec=60s
+TimeoutSec=3600
