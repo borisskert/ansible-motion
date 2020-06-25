@@ -1,0 +1,68 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Should template Dockerfile
+      stat:
+        path: /opt/motion/docker/Dockerfile
+      register: docker_file
+      failed_when: not docker_file.stat.exists
+
+    - name: Should create docker image
+      docker_image:
+        name: local/motion:latest
+        source: local
+        state: present
+
+    - name: Should template systemd unit file
+      stat:
+        path: /etc/systemd/system/motion.service
+      register: systemd_unit_file
+      failed_when: not systemd_unit_file.stat.exists
+
+    - name: Should create config volume
+      stat:
+        path: /srv/motion/config
+      register: config_volume_directory
+      failed_when: not (
+        config_volume_directory.stat.exists
+        and config_volume_directory.stat.isdir
+        )
+
+    - name: Should create log volume
+      stat:
+        path: /srv/motion/log
+      register: log_volume_directory
+      failed_when: not (
+        log_volume_directory.stat.exists
+        and log_volume_directory.stat.isdir
+        )
+
+    - name: Should create data volume
+      stat:
+        path: /srv/motion/log
+      register: data_volume_directory
+      failed_when: not (
+        data_volume_directory.stat.exists
+        and data_volume_directory.stat.isdir
+        )
+
+    - name: Should create motion config file
+      stat:
+        path: /srv/motion/config/motion.conf
+      register: motion_config_file
+      failed_when: not motion_config_file.stat.exists
+
+    - name: Should create usb cam config file
+      stat:
+        path: /srv/motion/config/conf.d/usb_cam.conf
+      register: usb_cam_config_file
+      failed_when: not usb_cam_config_file.stat.exists
+
+    - name: Should create video cam config file
+      stat:
+        path: /srv/motion/config/conf.d/video_card_cam.conf
+      register: video_card_cam_config_file
+      failed_when: not video_card_cam_config_file.stat.exists
