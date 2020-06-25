@@ -53,3 +53,16 @@
     dest: "{{ motion_config_volume }}/conf.d/{{ item.name }}.conf"
   loop: "{{ motion_cameras }}"
   notify: Restart motion service
+
+- name: Start systemd-managed docker containers
+  meta: flush_handlers
+
+- name: Start motion service (if not started)
+  systemd:
+    name: motion
+    state: started
+    enabled: true
+  when: not (
+    molecule_docker_environment is defined
+    and molecule_docker_environment | bool
+    )
