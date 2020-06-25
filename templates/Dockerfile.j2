@@ -1,0 +1,17 @@
+FROM debian:buster
+
+MAINTAINER borisskert <boris.skert@gmail.com>
+
+ENV DEBIAN_FRONTEND	noninteractive
+
+RUN apt-get update && \
+    apt-get install -y motion \
+                       && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+VOLUMES ["/etc/motion", "/var/log/motion", "/var/lib/motion"]
+
+EXPOSE 8081
+
+ENTRYPOINT ["/usr/bin/motion"]

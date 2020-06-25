@@ -1,2 +1,12 @@
 ---
-# tasks file for ansible-motion
+- name: Create docker working directory
+  file:
+    path: /opt/motion/docker
+    state: directory
+    mode: 0755
+
+- name: Template Dockerfile
+  template:
+    src: templates/Dockerfile.j2
+    dest: /opt/motion/docker/Dockerfile
+    mode: 0644
