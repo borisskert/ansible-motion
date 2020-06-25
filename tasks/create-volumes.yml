@@ -5,6 +5,12 @@
     state: directory
     mode: 0750
 
+- name: Create camera config volume
+  file:
+    path: "{{ motion_config_volume }}/conf.d"
+    state: directory
+    mode: 0750
+
 - name: Create log volume
   file:
     path: "{{ motion_log_volume }}"

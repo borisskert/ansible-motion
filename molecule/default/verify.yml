@@ -47,3 +47,9 @@
         data_volume_directory.stat.exists
         and data_volume_directory.stat.isdir
         )
+
+    - name: Should create motion config file
+      stat:
+        path: /srv/motion/config/motion.conf
+      register: motion_config_file
+      failed_when: not motion_config_file.stat.exists
