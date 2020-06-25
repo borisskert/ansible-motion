@@ -1,0 +1,21 @@
+---
+- name: Check 'motion_config_volume' parameter
+  assert:
+    that:
+      - "motion_config_volume is defined"
+      - "motion_config_volume | length > 0"
+    fail_msg: "parameter 'motion_config_volume' is missing"
+
+- name: Check 'motion_log_volume' parameter
+  assert:
+    that:
+      - "motion_log_volume is defined"
+      - "motion_log_volume | length > 0"
+    fail_msg: "parameter 'motion_log_volume' is missing"
+
+- name: Check 'motion_data_volume' parameter
+  assert:
+    that:
+      - "motion_data_volume is defined"
+      - "motion_data_volume | length > 0"
+    fail_msg: "parameter 'motion_data_volume' is missing"

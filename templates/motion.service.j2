@@ -14,6 +14,9 @@ ExecStartPre=/usr/bin/docker build \
 
 ExecStart=/usr/bin/docker run \
   --name {{ motion_docker_container_name }} \
+  --volume {{ motion_config_volume }}:/etc/motion \
+  --volume {{ motion_log_volume }}:/var/log/motion \
+  --volume {{ motion_data_volume }}:/var/lib/motion \
   --tmpfs /tmp \
   {{ motion_docker_image_name }}:{{ motion_docker_image_tag }}
 

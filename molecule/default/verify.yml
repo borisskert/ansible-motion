@@ -20,3 +20,30 @@
         path: /etc/systemd/system/motion.service
       register: systemd_unit_file
       failed_when: not systemd_unit_file.stat.exists
+
+    - name: Should create config volume
+      stat:
+        path: /srv/motion/config
+      register: config_volume_directory
+      failed_when: not (
+        config_volume_directory.stat.exists
+        and config_volume_directory.stat.isdir
+        )
+
+    - name: Should create log volume
+      stat:
+        path: /srv/motion/log
+      register: log_volume_directory
+      failed_when: not (
+        log_volume_directory.stat.exists
+        and log_volume_directory.stat.isdir
+        )
+
+    - name: Should create data volume
+      stat:
+        path: /srv/motion/log
+      register: data_volume_directory
+      failed_when: not (
+        data_volume_directory.stat.exists
+        and data_volume_directory.stat.isdir
+        )

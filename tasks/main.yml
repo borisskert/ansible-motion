@@ -1,4 +1,10 @@
 ---
+- name: Check role parameters
+  include: check-parameters.yml
+
+- name: Create volumes
+  include: create-volumes.yml
+
 - name: Create docker working directory
   file:
     path: "{{ motion_docker_working_directory }}"

@@ -5,3 +5,7 @@ motion_force_docker_rebuild: false
 motion_docker_container_name: motion.service
 motion_docker_image_name: local/motion
 motion_docker_image_tag: latest
+
+motion_config_volume: ''
+motion_log_volume: ''
+motion_data_volume: ''

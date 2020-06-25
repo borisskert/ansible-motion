@@ -5,3 +5,6 @@
 
   roles:
     - role: ansible-motion
+      motion_config_volume: /srv/motion/config
+      motion_log_volume: /srv/motion/log
+      motion_data_volume: /srv/motion/data
