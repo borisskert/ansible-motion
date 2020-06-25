@@ -485,7 +485,7 @@ stream_auth_method 0
 ############################################################
 
 # TCP/IP port for the http server to listen on (default: 0 = disabled)
-webcontrol_port 8080
+webcontrol_port {{ motion_web_control_port }}
 
 # Restrict control connections to localhost only (default: on)
 #webcontrol_localhost on

@@ -17,10 +17,11 @@ ExecStart=/usr/bin/docker run \
   --volume {{ motion_config_volume }}:/etc/motion \
   --volume {{ motion_log_volume }}:/var/log/motion \
   --volume {{ motion_data_volume }}:/var/lib/motion \
-  --publish {{ motion_stream_port }}:{{ motion_stream_port }}/tcp \
+  --publish {{ motion_web_control_interface }}:{{ motion_web_control_port }}:{{ motion_web_control_port }}/tcp \
+  --publish {{ motion_steam_interface }}:{{ motion_stream_port }}:{{ motion_stream_port }}/tcp \
 {% for camera in motion_cameras %}
   --device {{ camera.device }}:{{ camera.device }} \
-  --publish {{ camera.stream_port }}:{{ camera.stream_port }}/tcp \
+  --publish {{ motion_steam_interface }}:{{ camera.stream_port }}:{{ camera.stream_port }}/tcp \
 {% endfor %}
   --tmpfs /tmp \
   {{ motion_docker_image_name }}:{{ motion_docker_image_tag }}
