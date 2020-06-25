@@ -1,2 +1,3 @@
 ---
-# defaults file for ansible-motion
+motion_docker_working_directory: /opt/motion/docker
+motion_force_docker_rebuild: false

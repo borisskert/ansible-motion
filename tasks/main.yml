@@ -1,12 +1,27 @@
 ---
 - name: Create docker working directory
   file:
-    path: /opt/motion/docker
+    path: "{{ motion_docker_working_directory }}"
     state: directory
     mode: 0755
 
 - name: Template Dockerfile
   template:
     src: templates/Dockerfile.j2
-    dest: /opt/motion/docker/Dockerfile
+    dest: "{{ motion_docker_working_directory }}/Dockerfile"
     mode: 0644
+  register: dockerfile
+
+- name: Build docker image
+  docker_image:
+    build:
+      path: "{{ motion_docker_working_directory }}"
+      pull: false
+    name: local/motion
+    tag: latest
+    source: build
+    state: present
+    force_source: "{{
+      dockerfile.changed
+      or motion_force_docker_rebuild | bool
+      }}"

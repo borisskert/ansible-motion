@@ -10,7 +10,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-VOLUMES ["/etc/motion", "/var/log/motion", "/var/lib/motion"]
+VOLUME ["/etc/motion", "/var/log/motion", "/var/lib/motion"]
 
 EXPOSE 8081
 

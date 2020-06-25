@@ -8,3 +8,9 @@
         path: /opt/motion/docker/Dockerfile
       register: docker_file
       failed_when: not docker_file.stat.exists
+
+    - name: Should create docker image
+      docker_image:
+        name: local/motion:latest
+        source: local
+        state: present
