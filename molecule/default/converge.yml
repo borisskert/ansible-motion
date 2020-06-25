@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include ansible-motion"
+      include_role:
+        name: "ansible-motion"
