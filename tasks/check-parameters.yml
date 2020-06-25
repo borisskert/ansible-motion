@@ -19,3 +19,7 @@
       - "motion_data_volume is defined"
       - "motion_data_volume | length > 0"
     fail_msg: "parameter 'motion_data_volume' is missing"
+
+- name: Check camera properties
+  include: check-camera-properties.yml
+  loop: "{{ motion_cameras }}"

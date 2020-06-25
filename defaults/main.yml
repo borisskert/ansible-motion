@@ -9,3 +9,5 @@ motion_docker_image_tag: latest
 motion_config_volume: ''
 motion_log_volume: ''
 motion_data_volume: ''
+
+motion_cameras: []

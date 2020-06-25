@@ -42,3 +42,9 @@
   template:
     src: templates/motion.conf.j2
     dest: "{{ motion_config_volume }}/motion.conf"
+
+- name: Template camera config
+  template:
+    src: templates/camera.conf.j2
+    dest: "{{ motion_config_volume }}/conf.d/{{ item.name }}.conf"
+  loop: "{{ motion_cameras }}"
