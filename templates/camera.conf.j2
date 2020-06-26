@@ -39,6 +39,9 @@ text_left {{ item.text_left }}
 # Target base directory for pictures and films
 # Recommended to use absolute patch. (Default: current working directory)
 #target_dir /tmp/motion/cam2
+{% if item.target_dir is defined and item.target_dir | length > 0 %}
+target_dir /opt/cams/{{ item.target_dir }}
+{% endif %}
 
 # File path for motion triggered images (jpeg, ppm or webp) relative to target_dir
 # Default: %v-%Y%m%d%H%M%S-%q
@@ -64,3 +67,27 @@ stream_port {{ item.stream_port }}
 # Command to be executed when a movie file (.mpg|.avi) is closed. (default: none)
 # Filename of movie is appended as an argument for the command.
 #on_movie_end /usr/local/motion-extras/mpegparse2.pl
+
+
+###########################################################
+# Capture device options
+############################################################
+
+{% if item.width is defined and item.width | int > 0 %}
+width {{ item.width }}
+{% endif %}
+{% if item.height is defined and item.height | int > 0 %}
+height {{ item.height }}
+{% endif %}
+{% if item.framerate is defined and item.framerate | int > 0 %}
+framerate {{ item.framerate }}
+{% endif %}
+
+
+############################################################
+# Image File Output
+############################################################
+
+{% if item.ffmpeg_video_codec is defined and item.ffmpeg_video_codec | length > 0 %}
+ffmpeg_video_codec {{ item.framerate }}
+{% endif %}

@@ -22,3 +22,7 @@
     path: "{{ motion_data_volume }}"
     state: directory
     mode: 0750
+
+- name: Create cam data volumes
+  include: create-cam-data-volume.yml
+  loop: "{{ motion_cameras }}"

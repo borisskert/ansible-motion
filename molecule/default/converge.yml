@@ -14,6 +14,11 @@
           stream_port: 8081
           input: -1
           text_left: USB CAM
+          width: 1920
+          height: 1080
+          framerate: 60
+          target_dir: usb_cam
+          ffmpeg_video_codec: mpeg4
         - name: video_card_cam
           device: /dev/video1
           stream_port: 8082

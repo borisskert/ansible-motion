@@ -20,6 +20,9 @@ ExecStart=/usr/bin/docker run \
   --publish {{ motion_web_control_interface }}:{{ motion_web_control_port }}:{{ motion_web_control_port }}/tcp \
   --publish {{ motion_steam_interface }}:{{ motion_stream_port }}:{{ motion_stream_port }}/tcp \
 {% for camera in motion_cameras %}
+{% if camera.target_dir is defined and camera.target_dir | length > 0 %}
+  --volume {{ motion_data_volume }}/{{ camera.target_dir }}:/opt/cams/{{ camera.target_dir }} \
+{% endif %}
   --publish {{ motion_steam_interface }}:{{ camera.stream_port }}:{{ camera.stream_port }}/tcp \
 {% endfor %}
   --privileged \
