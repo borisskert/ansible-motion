@@ -48,15 +48,6 @@
         and data_volume_directory.stat.isdir
         )
 
-    - name: Should create cam target_dir volume
-      stat:
-        path: /srv/motion/data/usb_cam
-      register: cam_data_volume_directory
-      failed_when: not (
-        cam_data_volume_directory.stat.exists
-        and cam_data_volume_directory.stat.isdir
-        )
-
     - name: Should create motion config file
       stat:
         path: /srv/motion/config/motion.conf

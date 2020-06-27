@@ -1,8 +1,0 @@
----
-- name: Create cam data volume
-  file:
-    path: "{{ motion_data_volume }}/{{ item.target_dir }}"
-    state: directory
-    mode: 0750
-  when: item.target_dir is defined
-    and item.target_dir | length > 0

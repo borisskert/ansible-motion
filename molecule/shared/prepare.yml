@@ -9,3 +9,10 @@
       docker_cleanup_enabled: true
       docker_cleanup_on_calendar: daily
       docker_install_pip_package: true
+
+  post_tasks:
+    - name: Clean up docker images
+      docker_container:
+        name: local/motion
+        state: absent
+      failed_when: false

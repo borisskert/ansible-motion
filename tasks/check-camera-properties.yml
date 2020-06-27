@@ -6,30 +6,9 @@
       - "item.name | length > 0"
     fail_msg: "parameter 'item.name' is missing"
 
-- name: Check 'item.device' parameter
-  assert:
-    that:
-      - "item.device is defined"
-      - "item.device | length > 0"
-    fail_msg: "parameter 'item.device' is missing"
-
 - name: Check 'item.stream_port' parameter
   assert:
     that:
       - "item.stream_port is defined"
       - "item.stream_port | int > 0"
     fail_msg: "parameter 'item.stream_port' is missing or invalid"
-
-- name: Check 'item.input' parameter
-  assert:
-    that:
-      - "item.input is defined"
-      - "item.input | int == -1 or item.input | int == 1"
-    fail_msg: "parameter 'item.input' is missing or invalid"
-
-- name: Check 'item.text_left' parameter
-  assert:
-    that:
-      - "item.text_left is defined"
-      - "item.text_left | length > 0"
-    fail_msg: "parameter 'item.text_left' is missing"
