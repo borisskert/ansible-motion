@@ -3,7 +3,7 @@ motion_docker_working_directory: /opt/motion/docker
 motion_force_docker_rebuild: false
 
 motion_docker_container_name: motion.service
-motion_docker_image_name: local/motion
+motion_docker_image_name: motionproject/motion
 motion_docker_image_tag: latest
 
 motion_config_volume: ''
