@@ -11,4 +11,5 @@
     that:
       - "item.stream_port is defined"
       - "item.stream_port | int > 0"
+      - "item.stream_port | int < 65535"
     fail_msg: "parameter 'item.stream_port' is missing or invalid"
